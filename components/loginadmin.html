@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Administrativo</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
-    <h1>
-        PAINEL ADMINISTRATIVO
+<body class="admin-body">
 
-    </h1>
+    <div class="particles"></div>
 
-    
-    
+    <div class="login-admin-container">
+        <div class="form-box glow-card admin-login-box">
+            <h2 class="title">Painel Administrativo</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Acesso restrito</p>
+
+            <form id="form-login-admin" method="POST">
+                <input type="email" name="email" placeholder="E-mail Administrativo" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                
+                <button type="submit" class="btn glow">Entrar no Sistema</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="../index.html" style="color: #00ff99; text-decoration: none;">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar para o Site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../dist/bundle.js"></script>
 </body>
 </html>

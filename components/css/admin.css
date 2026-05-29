@@ -1,5 +1,43 @@
 /* DASHBOARD */
 
+.admin-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0d0d0d; /* Fundo escuro igual ao do site principal */
+    color: #fff;
+}
+
+.login-admin-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    z-index: 10;
+}
+
+.admin-login-box {
+    padding: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.admin-login-box input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    outline: none;
+}
+
+.admin-login-box button {
+    width: 100%;
+}
+
+/* ... existing dashboard code ... */
 .top-dashboard{
 
     display:grid;
