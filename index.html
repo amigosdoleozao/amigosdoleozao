@@ -8,9 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Amigos do Leozão
-    </title>
+    <title>         Amigos do Leozão     </title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="style/style.css">
@@ -60,7 +58,8 @@
                 Cadastro
             </a>
 
-            <a href="admin/login.php" class="admin-link">
+
+            <a href="components/loginadmin.html" class="admin-link">
             
                 <i class="fa-solid fa-lock"></i>
 
@@ -91,7 +90,7 @@
 
             <div class="hero-badge">
 
-                PRÉ-CANDIDATO • DISTRITO FEDERAL
+                PRÉ-CANDIDATO • DISTRITAL
 
             </div>
 
@@ -344,7 +343,7 @@
 
             </h2>
 
-            <form action="cadastro.php"
+            <form class="add"
                 method="POST">
 
                 <!-- INPUT -->
@@ -352,6 +351,13 @@
                     type="text"
                     name="nome"
                     placeholder="Nome completo"
+                    required>
+
+                <!-- INPUT -->
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="E-mail"
                     required>
 
                 <!-- INPUT -->
@@ -432,7 +438,7 @@
         <!-- LOGIN -->
         <div class="footer-admin">
 
-            <a href="admin/login.php">
+            <a href="components/loginadmin.html">
 
                 <i class="fa-solid fa-user-shield"></i>
 
@@ -448,7 +454,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!-- JS -->
-    <script src="script.js"></script>
+    <script src="dist/bundle.js"></script>
 
 </body>
 
