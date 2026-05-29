@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="css/admin.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="src/scriptdash.js"></script>
+
+</head>
+
+<body>
+
+<div class="painel">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>LEOZÃO</h2>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="painel.html">
+            Apoiadores
+        </a>
+
+        <a href="exportar_excel.html">
+            Exportar Excel
+        </a>
+
+        <a href="logout.html">
+            Sair
+        </a>
+
+    </aside>
+
+    <!-- CONTEUDO -->
+
+    <main class="conteudo">
+
+        <!-- TOPO -->
+
+        <div class="top-dashboard">
+
+            <div class="card-status glow-card">
+
+                <h3>Total de Apoiadores</h3>
+
+                <h1 id="total-apoiadores">0</h1>
+
+            </div>
+
+            <div class="card-status glow-card">
+
+                <h3>Cidades</h3>
+
+                <h1 id="total-cidades">0</h1>
+
+            </div>
+
+            <div class="card-status glow-card">
+
+                <h3>Últimos Cadastros</h3>
+
+                <h1 id="total-ultimos">0</h1>
+
+            </div>
+
+        </div>
+
+        <!-- GRAFICO -->
+
+        <div class="grafico-box glow-card">
+
+            <h2>
+                Apoiadores por Cidade
+            </h2>
+
+            <canvas id="graficoCidade"></canvas>
+
+        </div>
+
+        <!-- ULTIMOS -->
+
+        <div class="ultimos-box glow-card">
+
+            <h2>
+                Últimos Cadastros
+            </h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Nome</th>
+                        <th>Cidade</th>
+                        <th>Data</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabela-ultimos">
+
+                    <!-- Linhas preenchidas via JavaScript -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+</body>
+
+</html>
