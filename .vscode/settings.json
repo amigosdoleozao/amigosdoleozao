@@ -1,3 +1,7 @@
 {
-    "liveServer.settings.port": 5502
+    "liveServer.settings.port": 5502,
+    "cSpell.language": "en,pt,pt-BR",
+    "cSpell.words": [
+        "reunioes"
+    ]
 }

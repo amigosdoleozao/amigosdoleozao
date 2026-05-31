@@ -1,9 +1,13 @@
 import { initUI } from './ui.js';
 import { cadastrarApoiador, ouvirApoiadores } from './firebase/db.js';
+import { initScriptDash } from '../components/src/scriptdash.js';
+import { initLogin } from './login.js';
 
 // Inicializa componentes visuais
 document.addEventListener('DOMContentLoaded', () => {
     initUI();
+    initScriptDash();
+    initLogin();
 
     // Referência ao formulário de cadastro na página principal
     const addForm = document.querySelector('.add');
