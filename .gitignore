@@ -33,7 +33,7 @@ firebaserc
 Thumbs.db
 
 # Pastas de build/distribuição (se você usa Vite, Webpack ou React)
-dist/
+# dist/ (comentado para permitir deploy no GitHub Pages)
 build/
 Boas_Praticas.md
 
