@@ -1,9 +1,12 @@
 import { ouvirApoiadores } from '../../src/firebase/db.js';
+import { verificarAcessoAdmin } from '../../src/login.js';
+import { deslogarUsuario } from '../../src/firebase/auth.js';
 
 // ======================================
 // RENDERIZAÇÃO DO DASHBOARD
 // ======================================
 let chartInstance = null;
+let currentRole = null;
 
 function renderDashboard(dados) {
     // 1. Atualizar Topo
@@ -95,38 +98,70 @@ function renderDashboard(dados) {
     }
 }
 
+function handleUIForRoles(role) {
+    // Esconder/Mostrar itens do menu com base na role
+    const links = document.querySelectorAll('.sidebar a');
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (role === 'viewer') {
+            // Viewers não podem exportar nem ver a lista completa (se tiver uma pagina especifica)
+            if (href === 'exportar_excel.html' || href === 'painel.html') {
+                link.style.display = 'none';
+            }
+        }
+    });
+}
+
 // Inicializa assim que a página carregar
 export function initScriptDash() {
     const elTotal = document.getElementById('total-apoiadores');
     if (!elTotal) return; // Evita erros em outras páginas
 
-    ouvirApoiadores((apoiadores) => {
-        const total = apoiadores.length;
-        const cidades = {};
-        const ultimos = [];
-
-        apoiadores.forEach((ap, index) => {
-            const cidade = ap.cidade || "Desconhecida";
-            cidades[cidade] = (cidades[cidade] || 0) + 1;
-            
-            // Pega os 5 últimos
-            if (index < 5) {
-                let dataFormatada = "";
-                if (ap.createdAt && ap.createdAt.toDate) {
-                    dataFormatada = ap.createdAt.toDate().toLocaleDateString('pt-BR');
-                } else {
-                    dataFormatada = "N/A";
-                }
-                
-                ultimos.push({
-                    nome: ap.nome || "Sem nome",
-                    cidade: cidade,
-                    data: dataFormatada
-                });
-            }
+    // Logout Helper
+    const logoutBtn = document.querySelector('a[href="logout.html"]');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            deslogarUsuario().then(() => {
+                window.location.href = 'loginadmin.html';
+            });
         });
+    }
 
-        renderDashboard({ total, cidades, ultimos });
+    // Proteção da Rota
+    verificarAcessoAdmin((user, role) => {
+        currentRole = role;
+        
+        handleUIForRoles(role);
+
+        ouvirApoiadores((apoiadores) => {
+            const total = apoiadores.length;
+            const cidades = {};
+            const ultimos = [];
+
+            apoiadores.forEach((ap, index) => {
+                const cidade = ap.cidade || "Desconhecida";
+                cidades[cidade] = (cidades[cidade] || 0) + 1;
+                
+                // Pega os 5 últimos
+                if (index < 5) {
+                    let dataFormatada = "";
+                    if (ap.createdAt && ap.createdAt.toDate) {
+                        dataFormatada = ap.createdAt.toDate().toLocaleDateString('pt-BR');
+                    } else {
+                        dataFormatada = "N/A";
+                    }
+                    
+                    ultimos.push({
+                        nome: ap.nome || "Sem nome",
+                        cidade: cidade,
+                        data: dataFormatada
+                    });
+                }
+            });
+
+            renderDashboard({ total, cidades, ultimos });
+        });
     });
 }
 

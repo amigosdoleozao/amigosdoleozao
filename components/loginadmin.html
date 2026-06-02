@@ -19,11 +19,23 @@
             <h2 class="title">Painel Administrativo</h2>
             <p style="text-align: center; margin-bottom: 20px;">Acesso restrito</p>
 
+            <div class="auth-tabs" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button id="tab-login" class="btn active" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #00ff99; background: #00ff99; color: #000; cursor: pointer;">Entrar</button>
+                <button id="tab-register" class="btn" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #00ff99; background: transparent; color: #00ff99; cursor: pointer;">Cadastrar</button>
+            </div>
+
+            <!-- Formulário de Login -->
             <form id="form-login-admin" method="POST">
                 <input type="email" name="email" placeholder="E-mail Administrativo" required>
                 <input type="password" name="password" placeholder="Senha" required>
-                
                 <button type="submit" class="btn glow">Entrar no Sistema</button>
+            </form>
+
+            <!-- Formulário de Cadastro (Oculto por padrão) -->
+            <form id="form-register-admin" method="POST" style="display: none;">
+                <input type="email" name="email" placeholder="Seu E-mail" required>
+                <input type="password" name="password" placeholder="Crie uma Senha" required>
+                <button type="submit" class="btn glow">Criar Conta</button>
             </form>
 
             <div style="text-align: center; margin-top: 20px;">
