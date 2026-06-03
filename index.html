@@ -137,6 +137,19 @@
 
     </section>
 
+    <!-- REUNIÕES PÚBLICAS -->
+    <section class="carousel-section" id="reunioes-publicas" style="padding-top: 50px; padding-bottom: 50px;">
+        <h2 class="title">
+            Próximas Reuniões
+        </h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="carrossel-reunioes-wrapper">
+                <!-- Reuniões renderizadas dinamicamente via JS -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
     <!-- CARDS -->
     <section class="cards-section"
         id="acoes">
@@ -368,16 +381,67 @@
                     required>
 
                 <!-- INPUT -->
-                <input
-                    type="text"
-                    name="cidade"
-                    placeholder="Cidade">
+                <select name="cidade" required>
+                    <option value="" disabled>Selecione a Cidade</option>
+                    <option value="Brasília" selected>Brasília</option>
+                    <option value="São Paulo">São Paulo</option>
+                    <option value="Rio de Janeiro">Rio de Janeiro</option>
+                    <option value="Salvador">Salvador</option>
+                    <option value="Fortaleza">Fortaleza</option>
+                    <option value="Belo Horizonte">Belo Horizonte</option>
+                    <option value="Manaus">Manaus</option>
+                    <option value="Curitiba">Curitiba</option>
+                    <option value="Recife">Recife</option>
+                    <option value="Goiânia">Goiânia</option>
+                </select>
 
                 <!-- INPUT -->
                 <input
                     type="text"
-                    name="bairro"
-                    placeholder="Bairro">
+                    name="indicador"
+                    placeholder="Indicador">
+                    
+                <!-- INPUT -->
+                <select name="bairro" required>
+                    <option value="" disabled selected>Selecione a Região/Bairro</option>
+                    <option value="26 de Setembro">26 de Setembro</option>
+                    <option value="Água Quente">Água Quente</option>
+                    <option value="Águas Claras">Águas Claras</option>
+                    <option value="Arapoanga">Arapoanga</option>
+                    <option value="Arniqueira">Arniqueira</option>
+                    <option value="Brazlândia">Brazlândia</option>
+                    <option value="Candangolândia">Candangolândia</option>
+                    <option value="Ceilândia">Ceilândia</option>
+                    <option value="Cruzeiro">Cruzeiro</option>
+                    <option value="Estrutural/SCIA">Estrutural/SCIA</option>
+                    <option value="Fercal">Fercal</option>
+                    <option value="Gama">Gama</option>
+                    <option value="Guará">Guará</option>
+                    <option value="Itapoã">Itapoã</option>
+                    <option value="Jardim Botânico">Jardim Botânico</option>
+                    <option value="Lago Norte">Lago Norte</option>
+                    <option value="Lago Sul">Lago Sul</option>
+                    <option value="Núcleo Bandeirante">Núcleo Bandeirante</option>
+                    <option value="Paranoá">Paranoá</option>
+                    <option value="Park Way">Park Way</option>
+                    <option value="Planaltina">Planaltina</option>
+                    <option value="Plano Piloto">Plano Piloto</option>
+                    <option value="Pôr do Sol">Pôr do Sol</option>
+                    <option value="Recanto das Emas">Recanto das Emas</option>
+                    <option value="Riacho Fundo">Riacho Fundo</option>
+                    <option value="Riacho Fundo II">Riacho Fundo II</option>
+                    <option value="Samambaia">Samambaia</option>
+                    <option value="Santa Maria">Santa Maria</option>
+                    <option value="São Sebastião">São Sebastião</option>
+                    <option value="SIA">SIA</option>
+                    <option value="Sobradinho">Sobradinho</option>
+                    <option value="Sobradinho II">Sobradinho II</option>
+                    <option value="Sol Nascente">Sol Nascente</option>
+                    <option value="Sudoeste/Octogonal">Sudoeste/Octogonal</option>
+                    <option value="Taguatinga">Taguatinga</option>
+                    <option value="Varjão">Varjão</option>
+                    <option value="Vicente Pires">Vicente Pires</option>
+                </select>
 
                 <!-- TEXTAREA -->
                 <textarea

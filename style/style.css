@@ -325,6 +325,7 @@ form {
 }
 
 form input,
+form select,
 form textarea {
 
     padding: 15px;

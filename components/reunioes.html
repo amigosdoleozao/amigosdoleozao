@@ -39,37 +39,59 @@
 
         <!-- CONTEUDO -->
         <main class="conteudo">
-            <h2 style="margin-bottom: 30px; color: #00ff99;">Gerenciar Reuniões</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 style="color: #00ff99;">Gerenciar Reuniões</h2>
+                <button id="btn-nova-reuniao" class="btn glow" style="padding: 10px 20px; font-size: 16px;">Nova Reunião</button>
+            </div>
 
             <!-- FORM DE CADASTRO -->
             <div id="reunioes-form-container" class="form-box glow-card" style="max-width: 100%; margin-bottom: 40px; display: none;">
                 <h3 style="margin-bottom: 20px;">Cadastrar Nova Reunião</h3>
                 <form id="form-reuniao">
-                    <input type="text" name="titulo" placeholder="Título (Headline)" required>
-                    <input type="date" name="data" required>
-                    <input type="time" name="hora" required>
-                    <input type="text" name="local" placeholder="Local da Reunião" required>
-                    <textarea name="descricao" placeholder="Descrição ou Pauta" rows="4"></textarea>
+                    <input type="datetime-local" name="data" required>
+                    <input type="text" name="descricao" placeholder="Objetivo da reunião (Descrição)" required>
+                    <input type="text" name="local" placeholder="Local da reunião" required>
                     
-                    <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer;">
-                        <input type="checkbox" name="destaque" style="width: auto;">
-                        Destacar no Site Principal (Index)
+                    <select name="modalidade" required style="padding: 15px; border: none; border-radius: 10px; background: rgba(255,255,255,0.15); color: white; margin-bottom: 20px;">
+                        <option value="" disabled selected>Selecione a Modalidade</option>
+                        <option value="Presencial" style="color: black;">Presencial</option>
+                        <option value="Online" style="color: black;">Online</option>
+                        <option value="Híbrida" style="color: black;">Híbrida</option>
+                    </select>
+                    
+                    <textarea name="pauta" placeholder="Assuntos a serem discutidos (Pauta)" rows="4" required></textarea>
+                    
+                    <input type="text" name="responsavel" placeholder="Responsável (Nome do proprietário)" required>
+                    
+                    <select name="status" required style="padding: 15px; border: none; border-radius: 10px; background: rgba(255,255,255,0.15); color: white; margin-bottom: 20px;">
+                        <option value="Agendada" style="color: black;" selected>Agendada</option>
+                        <option value="Realizada" style="color: black;">Realizada</option>
+                        <option value="Cancelada" style="color: black;">Cancelada</option>
+                    </select>
+
+                    <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; cursor: pointer;">
+                        <input type="checkbox" name="publica" style="width: auto;">
+                        Reunião Pública (Mostrar no site principal)
                     </label>
 
-                    <button type="submit" class="btn glow">Salvar Reunião</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn glow" style="flex: 1;">Salvar Reunião</button>
+                        <button type="button" id="btn-cancelar-reuniao" class="btn" style="flex: 1; background: #ff4d4d;">Cancelar</button>
+                    </div>
                 </form>
             </div>
 
             <!-- LISTA DE REUNIÕES -->
             <div class="ultimos-box glow-card">
-                <h3 style="margin-bottom: 20px;">Reuniões Agendadas</h3>
+                <h3 style="margin-bottom: 20px;">Reuniões Cadastradas</h3>
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); color: #00ff99;">
-                            <th style="padding: 10px;">Título</th>
                             <th style="padding: 10px;">Data/Hora</th>
-                            <th style="padding: 10px;">Local</th>
-                            <th style="padding: 10px;">Site</th>
+                            <th style="padding: 10px;">Descrição</th>
+                            <th style="padding: 10px;">Local/Modalidade</th>
+                            <th style="padding: 10px;">Status</th>
+                            <th style="padding: 10px;">Pública</th>
                             <th style="padding: 10px;">Ações</th>
                         </tr>
                     </thead>

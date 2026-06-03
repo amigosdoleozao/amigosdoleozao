@@ -4,7 +4,7 @@ import { db } from "./config.js";
 // Referência para a coleção 'apoiador'
 const apoiadorColRef = collection(db, 'apoiador');
 const usersColRef = collection(db, 'users');
-const reunioesColRef = collection(db, 'reunioes');
+const reunioesColRef = collection(db, 'reuniao');
 
 // --- CADASTRAR APOIADOR ---
 export async function cadastrarApoiador(dados) {
@@ -103,11 +103,11 @@ export function ouvirReunioes(callback) {
 }
 
 export async function atualizarReuniao(id, dados) {
-  const docRef = doc(db, 'reunioes', id);
+  const docRef = doc(db, 'reuniao', id);
   await updateDoc(docRef, dados);
 }
 
 export async function deletarReuniao(id) {
-  const docRef = doc(db, 'reunioes', id);
+  const docRef = doc(db, 'reuniao', id);
   await deleteDoc(docRef);
 }
