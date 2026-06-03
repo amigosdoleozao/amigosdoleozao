@@ -15,10 +15,10 @@ function renderDashboard(dados) {
     
     elTotal.innerText = dados.total;
     
-    const nomesCidades = Object.keys(dados.cidades);
-    const valoresCidades = Object.values(dados.cidades);
+    const nomesBairros = Object.keys(dados.bairros);
+    const valoresBairros = Object.values(dados.bairros);
     
-    document.getElementById('total-cidades').innerText = nomesCidades.length;
+    document.getElementById('total-cidades').innerText = nomesBairros.length;
     document.getElementById('total-ultimos').innerText = dados.ultimos.length;
 
     // 2. Preencher Tabela
@@ -31,14 +31,14 @@ function renderDashboard(dados) {
         const tdNome = document.createElement('td');
         tdNome.innerText = item.nome;
         
-        const tdCidade = document.createElement('td');
-        tdCidade.innerText = item.cidade;
+        const tdBairro = document.createElement('td');
+        tdBairro.innerText = item.bairro;
         
         const tdData = document.createElement('td');
         tdData.innerText = item.data;
         
         tr.appendChild(tdNome);
-        tr.appendChild(tdCidade);
+        tr.appendChild(tdBairro);
         tr.appendChild(tdData);
         
         tabelaUltimos.appendChild(tr);
@@ -56,10 +56,10 @@ function renderDashboard(dados) {
             {
                 type: 'bar',
                 data: {
-                    labels: nomesCidades,
+                    labels: nomesBairros,
                     datasets: [{
                         label: 'Apoiadores',
-                        data: valoresCidades,
+                        data: valoresBairros,
                         borderWidth: 2,
                         backgroundColor: 'rgba(0, 255, 153, 0.5)',
                         borderColor: '#00ff99'
@@ -136,12 +136,12 @@ export function initScriptDash() {
 
         ouvirApoiadores((apoiadores) => {
             const total = apoiadores.length;
-            const cidades = {};
+            const bairros = {};
             const ultimos = [];
 
             apoiadores.forEach((ap, index) => {
-                const cidade = ap.cidade || "Desconhecida";
-                cidades[cidade] = (cidades[cidade] || 0) + 1;
+                const bairro = ap.bairro || "Desconhecido";
+                bairros[bairro] = (bairros[bairro] || 0) + 1;
                 
                 // Pega os 5 últimos
                 if (index < 5) {
@@ -154,13 +154,13 @@ export function initScriptDash() {
                     
                     ultimos.push({
                         nome: ap.nome || "Sem nome",
-                        cidade: cidade,
+                        bairro: bairro,
                         data: dataFormatada
                     });
                 }
             });
 
-            renderDashboard({ total, cidades, ultimos });
+            renderDashboard({ total, bairros, ultimos });
         });
     });
 }
