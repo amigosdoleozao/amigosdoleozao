@@ -10,8 +10,12 @@ content="width=device-width, initial-scale=1.0">
 
 <title>Dashboard</title>
 
+<!-- CSS Base e Admin -->
+<link rel="stylesheet" href="../style/style.css">
 <link rel="stylesheet" href="css/admin.css">
 
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../dist/bundle.js"></script>
@@ -20,28 +24,35 @@ content="width=device-width, initial-scale=1.0">
 
 <body>
 
+<!-- PARTICULAS PARA MANTER O TEMA -->
+<div class="particles"></div>
+
 <div class="painel">
 
     <!-- SIDEBAR -->
 
-    <aside class="sidebar">
+    <aside class="sidebar glow-card" style="margin: 20px; border-radius: 20px; height: calc(100vh - 40px);">
 
-        <h2>LEOZÃO</h2>
+        <h2 style="color: #00ff99; text-align: center; margin-bottom: 30px;">LEOZÃO</h2>
 
-        <a href="dashboard.html">
-            Dashboard
+        <a href="dashboard.html" class="active">
+            <i class="fa-solid fa-chart-line"></i> Dashboard
         </a>
 
         <a href="painel.html">
-            Apoiadores
+            <i class="fa-solid fa-users"></i> Apoiadores
+        </a>
+
+        <a href="reunioes.html">
+            <i class="fa-solid fa-handshake"></i> Reuniões
         </a>
 
         <a href="exportar_excel.html">
-            Exportar Excel
+            <i class="fa-solid fa-file-excel"></i> Exportar Excel
         </a>
 
-        <a href="logout.html">
-            Sair
+        <a href="logout.html" style="margin-top: auto; color: #ff4d4d;">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair
         </a>
 
     </aside>
@@ -84,7 +95,7 @@ content="width=device-width, initial-scale=1.0">
 
         <div class="grafico-box glow-card">
 
-            <h2>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #00ff99;">
                 Apoiadores por Cidade
             </h2>
 
@@ -96,19 +107,19 @@ content="width=device-width, initial-scale=1.0">
 
         <div class="ultimos-box glow-card">
 
-            <h2>
+            <h2 style="text-align: center; margin-bottom: 20px; color: #00ff99;">
                 Últimos Cadastros
             </h2>
 
-            <table>
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
 
                 <thead>
 
-                    <tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); color: #00ff99;">
 
-                        <th>Nome</th>
-                        <th>Cidade</th>
-                        <th>Data</th>
+                        <th style="padding: 10px;">Nome</th>
+                        <th style="padding: 10px;">Cidade</th>
+                        <th style="padding: 10px;">Data</th>
 
                     </tr>
 
@@ -127,8 +138,6 @@ content="width=device-width, initial-scale=1.0">
     </main>
 
 </div>
-
-
 
 </body>
 

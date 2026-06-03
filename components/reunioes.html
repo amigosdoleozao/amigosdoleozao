@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Reuniões</title>
+    <!-- CSS Base e Admin -->
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="../dist/bundle.js"></script>
+</head>
+<body>
+
+    <!-- PARTICULAS -->
+    <div class="particles"></div>
+
+    <div class="painel">
+        <!-- SIDEBAR -->
+        <aside class="sidebar glow-card" style="margin: 20px; border-radius: 20px; height: calc(100vh - 40px);">
+            <h2 style="color: #00ff99; text-align: center; margin-bottom: 30px;">LEOZÃO</h2>
+            <a href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="painel.html">
+                <i class="fa-solid fa-users"></i> Apoiadores
+            </a>
+            <a href="reunioes.html" class="active">
+                <i class="fa-solid fa-handshake"></i> Reuniões
+            </a>
+            <a href="exportar_excel.html">
+                <i class="fa-solid fa-file-excel"></i> Exportar Excel
+            </a>
+            <a href="logout.html" style="margin-top: auto; color: #ff4d4d;">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </a>
+        </aside>
+
+        <!-- CONTEUDO -->
+        <main class="conteudo">
+            <h2 style="margin-bottom: 30px; color: #00ff99;">Gerenciar Reuniões</h2>
+
+            <!-- FORM DE CADASTRO -->
+            <div id="reunioes-form-container" class="form-box glow-card" style="max-width: 100%; margin-bottom: 40px; display: none;">
+                <h3 style="margin-bottom: 20px;">Cadastrar Nova Reunião</h3>
+                <form id="form-reuniao">
+                    <input type="text" name="titulo" placeholder="Título (Headline)" required>
+                    <input type="date" name="data" required>
+                    <input type="time" name="hora" required>
+                    <input type="text" name="local" placeholder="Local da Reunião" required>
+                    <textarea name="descricao" placeholder="Descrição ou Pauta" rows="4"></textarea>
+                    
+                    <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer;">
+                        <input type="checkbox" name="destaque" style="width: auto;">
+                        Destacar no Site Principal (Index)
+                    </label>
+
+                    <button type="submit" class="btn glow">Salvar Reunião</button>
+                </form>
+            </div>
+
+            <!-- LISTA DE REUNIÕES -->
+            <div class="ultimos-box glow-card">
+                <h3 style="margin-bottom: 20px;">Reuniões Agendadas</h3>
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); color: #00ff99;">
+                            <th style="padding: 10px;">Título</th>
+                            <th style="padding: 10px;">Data/Hora</th>
+                            <th style="padding: 10px;">Local</th>
+                            <th style="padding: 10px;">Site</th>
+                            <th style="padding: 10px;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-reunioes">
+                        <!-- Linhas geradas por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

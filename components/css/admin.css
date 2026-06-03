@@ -1,11 +1,54 @@
 /* DASHBOARD */
 
+.painel {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: rgba(255,255,255,0.05);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background: rgba(0,255,153,0.2);
+    color: #00ff99;
+}
+
+.conteudo {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
 .admin-body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #0d0d0d; /* Fundo escuro igual ao do site principal */
+    background-color: #0d0d0d; /* Usado no login se não tiver o style.css global */
     color: #fff;
 }
 
@@ -37,67 +80,40 @@
     width: 100%;
 }
 
-/* ... existing dashboard code ... */
 .top-dashboard{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit, minmax(250px,1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     gap:20px;
-
     margin-bottom:30px;
 }
 
 .card-status{
-
     padding:30px;
-
     border-radius:20px;
-
-    background:
-    rgba(255,255,255,0.08);
-
+    background: rgba(255,255,255,0.08);
     backdrop-filter:blur(15px);
-
     text-align:center;
 }
 
 .card-status h3{
-
     margin-bottom:15px;
-
     color:#00ff99;
 }
 
 .card-status h1{
-
     font-size:50px;
 }
 
-/* GRAFICO */
-
 .grafico-box{
-
     padding:30px;
-
     border-radius:20px;
-
-    background:
-    rgba(255,255,255,0.08);
-
+    background: rgba(255,255,255,0.08);
     margin-bottom:30px;
 }
 
-/* ULTIMOS */
-
 .ultimos-box{
-
     padding:30px;
-
     border-radius:20px;
-
-    background:
-    rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.08);
 }
+
