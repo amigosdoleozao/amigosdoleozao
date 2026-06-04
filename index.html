@@ -2,6 +2,7 @@
 <html lang="pt-br">
 
 <head>
+    
 
     <meta charset="UTF-8">
 
@@ -9,6 +10,9 @@
         content="width=device-width, initial-scale=1.0">
 
     <title>         Amigos do Leozão     </title>
+
+    <!-- FAVICON -->
+    <link rel="icon" href="leo.ico" type="image/x-icon">
 
     <!-- CSS -->
     <link rel="stylesheet" href="style/style.css">
@@ -108,6 +112,7 @@
                 presença e compromisso social.
 
             </p>
+            <p>”Com a força da fé, pela força da oração” Leozão.</p>
 
             <!-- BOTOES -->
             <div class="hero-buttons">
@@ -132,6 +137,13 @@
 
         </div>
 
+        <!-- VIDEO HERO -->
+        <div class="hero-video">
+            <video autoplay loop muted playsinline>
+                <source src="data/assets/videos/leoprevideo.mp4" type="video/mp4">
+            </video>
+        </div>
+
         <!-- EFEITO -->
         <div class="hero-light"></div>
 
@@ -142,11 +154,10 @@
         <h2 class="title">
             Próximas Reuniões
         </h2>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper" id="carrossel-reunioes-wrapper">
+        <div class="swiper reunioesSwiper">
+            <div class="swiper-wrapper" id="carrossel-reunioes-wrapper" style="transition-timing-function: linear !important;">
                 <!-- Reuniões renderizadas dinamicamente via JS -->
             </div>
-            <div class="swiper-pagination"></div>
         </div>
     </section>
 

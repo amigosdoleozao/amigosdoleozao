@@ -57,7 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (carrosselReunioes) {
         ouvirReunioes((reunioes) => {
             carrosselReunioes.innerHTML = '';
-            const reunioesPublicas = reunioes.filter(r => r.publica);
+            
+            const now = new Date();
+            const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+            const endOfToday = startOfToday + 24 * 60 * 60 * 1000 - 1;
+
+            // Filtra reuniões públicas e que ainda não venceram (não são do passado)
+            let reunioesPublicas = reunioes.filter(r => {
+                if (!r.publica) return false;
+                if (!r.data) return true; // se não tiver data, deixa aparecer
+                const reuniaoDate = new Date(r.data).getTime();
+                // Considera não vencida se for maior ou igual ao início de hoje
+                return reuniaoDate >= startOfToday;
+            });
+
+            // Pega apenas as 4 próximas (já vêm ordenadas por data crescente pelo DB)
+            reunioesPublicas = reunioesPublicas.slice(0, 4);
 
             if (reunioesPublicas.length === 0) {
                 carrosselReunioes.innerHTML = '<p style="text-align: center; width: 100%;">Nenhuma reunião pública agendada no momento.</p>';
@@ -66,10 +81,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             reunioesPublicas.forEach(reuniao => {
                 let dataFormatada = reuniao.data;
+                let isToday = false;
+
                 if (reuniao.data) {
                     const dataObj = new Date(reuniao.data);
                     if (!isNaN(dataObj.getTime())) {
                         dataFormatada = dataObj.toLocaleDateString('pt-BR') + ' às ' + dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                        
+                        // Verifica se é hoje
+                        if (dataObj.getTime() >= startOfToday && dataObj.getTime() <= endOfToday) {
+                            isToday = true;
+                        }
                     }
                 }
 
@@ -77,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const randomImg = Math.floor(Math.random() * 5) + 1;
                 
                 const slide = document.createElement('div');
-                slide.className = 'swiper-slide slide-card';
+                slide.className = 'swiper-slide slide-card' + (isToday ? ' blink-card' : '');
                 slide.style.background = `url('https://picsum.photos/400/300?random=${reuniao.id}') center/cover`;
                 slide.style.position = 'relative';
 
@@ -85,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="slide-overlay" style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); border-radius: 20px;"></div>
                     <div style="position: relative; z-index: 2; text-align: left;">
                         <span style="background: #00ff99; color: black; padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: bold; margin-bottom: 10px; display: inline-block;">
-                            ${reuniao.modalidade || 'Presencial'}
+                            ${reuniao.modalidade || 'Presencial'} ${isToday ? ' - HOJE!' : ''}
                         </span>
                         <h3 style="margin-bottom: 10px; font-size: 22px;">${reuniao.descricao}</h3>
                         <p style="margin-bottom: 5px; font-size: 14px;"><i class="fa-regular fa-calendar"></i> ${dataFormatada}</p>

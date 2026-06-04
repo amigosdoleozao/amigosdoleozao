@@ -10,6 +10,18 @@ export function initUI() {
                 el: ".swiper-pagination",
             },
         });
+
+        // Configuração específica para as Reuniões com rolagem lateral contínua e lenta
+        new Swiper(".reunioesSwiper", {
+            loop: true,
+            freeMode: true,
+            speed: 5000, // Ajuste para mais ou menos lento
+            slidesPerView: "auto",
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+        });
     } else {
         console.warn("Swiper não encontrado.");
     }
