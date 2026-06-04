@@ -40,10 +40,135 @@
 
         <!-- CONTEUDO -->
         <main class="conteudo">
-            <h2 style="color: #00ff99; margin-bottom: 20px;">Apoiadores (Em breve)</h2>
-            <div class="ultimos-box glow-card">
-                <p>Lista completa de apoiadores será implementada em breve.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <div>
+                    <h2 style="color: #00ff99;">Consultas Otimizadas de Apoiadores</h2>
+                    <p style="color: #ccc; font-size: 14px; margin-top: 5px;">Utilize os painéis abaixo para realizar buscas específicas e minimizar leituras (custos) no banco de dados.</p>
+                </div>
             </div>
+
+            <!-- GRID DE 10 CARDS -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+
+                <!-- 1. Últimos 10 Cadastros -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-clock-rotate-left"></i> Últimos 10 Cadastros</h3>
+                    <p style="font-size: 13px; margin-bottom: auto; color: #aaa;">Retorna apenas os 10 mais recentes, utilizando <code>limit(10)</code> para evitar varreduras.</p>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Últimos 10 Cadastros')">Executar Consulta</button>
+                </div>
+
+                <!-- 2. Cadastros de Hoje -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-calendar-day"></i> Cadastros de Hoje</h3>
+                    <p style="font-size: 13px; margin-bottom: auto; color: #aaa;">Filtra registros criados a partir da meia-noite de hoje. Ideal para acompanhamento diário.</p>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Cadastros de Hoje')">Executar Consulta</button>
+                </div>
+
+                <!-- 3. Cadastros da Semana -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-calendar-week"></i> Últimos 7 Dias</h3>
+                    <p style="font-size: 13px; margin-bottom: auto; color: #aaa;">Filtro rápido pelos cadastros da última semana. Requer índice em campos de data.</p>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Últimos 7 Dias')">Executar Consulta</button>
+                </div>
+
+                <!-- 4. Top Bairros (Agregado) -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-map-location-dot"></i> Top Bairros</h3>
+                    <p style="font-size: 13px; margin-bottom: auto; color: #aaa;">Consulta um documento de <em>métricas agregadas</em>, evitando ler centenas de usuários.</p>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Top Bairros (Documento Agregado)')">Ver Métricas</button>
+                </div>
+
+                <!-- 5. Crescimento Mensal (Agregado) -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-chart-line"></i> Crescimento Mensal</h3>
+                    <p style="font-size: 13px; margin-bottom: auto; color: #aaa;">Lê totais mensais consolidados ao invés de recalcular todos os registros.</p>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Crescimento Mensal (Documento Agregado)')">Ver Métricas</button>
+                </div>
+
+                <!-- 6. Busca por Data Customizada -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-regular fa-calendar"></i> Busca por Período</h3>
+                    <div style="display: flex; gap: 10px; margin-bottom: auto;">
+                        <input type="date" id="data-inicio" style="width: 100%; padding: 8px; border-radius: 5px; background: rgba(255,255,255,0.1); color: white; border: none;">
+                        <input type="date" id="data-fim" style="width: 100%; padding: 8px; border-radius: 5px; background: rgba(255,255,255,0.1); color: white; border: none;">
+                    </div>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Período Específico')">Buscar Período</button>
+                </div>
+
+                <!-- 7. Busca por Bairro (Exato) -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-location-crosshairs"></i> Filtro por Bairro</h3>
+                    <select id="filtro-bairro" style="width: 100%; padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.1); color: white; border: none; margin-bottom: auto;">
+                        <option value="" disabled selected>Selecione um Bairro</option>
+                        <option style="color: black" value="Ceilândia">Ceilândia</option>
+                        <option style="color: black" value="Taguatinga">Taguatinga</option>
+                        <option style="color: black" value="Samambaia">Samambaia</option>
+                        <option style="color: black" value="Brazlândia">Brazlândia</option>
+                        <option style="color: black" value="Gama">Gama</option>
+                    </select>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Filtro por Bairro')">Filtrar</button>
+                </div>
+
+                <!-- 8. Busca por Cidade -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-city"></i> Filtro por Cidade</h3>
+                    <select id="filtro-cidade" style="width: 100%; padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.1); color: white; border: none; margin-bottom: auto;">
+                        <option value="" disabled selected>Selecione a Cidade</option>
+                        <option style="color: black" value="Brasília">Brasília</option>
+                        <option style="color: black" value="Goiânia">Goiânia</option>
+                        <option style="color: black" value="São Paulo">São Paulo</option>
+                    </select>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Filtro por Cidade')">Filtrar</button>
+                </div>
+
+                <!-- 9. Busca por Indicador -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-user-tag"></i> Filtrar por Indicador</h3>
+                    <input type="text" id="filtro-indicador" placeholder="Nome do Indicador" style="width: 100%; padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.1); color: white; border: none; margin-bottom: auto;">
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Filtro por Indicador')">Pesquisar</button>
+                </div>
+
+                <!-- 10. Amostra Aleatória (Limit) -->
+                <div class="form-box glow-card" style="padding: 20px; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;"><i class="fa-solid fa-shuffle"></i> Amostra Rápida (50)</h3>
+                    <p style="font-size: 13px; margin-bottom: auto; color: #aaa;">Traz até 50 registros rápidos com <code>limit(50)</code> para exportação ou amostragem.</p>
+                    <button class="btn glow" style="width: 100%; padding: 10px; font-size: 14px; margin-top: 15px;" onclick="mostrarResultado('Amostra de 50 Apoiadores')">Buscar Amostra</button>
+                </div>
+
+            </div>
+
+            <!-- RESULTADO DA CONSULTA -->
+            <div id="container-resultados" class="ultimos-box glow-card" style="margin-top: 40px; display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="color: #00ff99;" id="titulo-resultado">Resultados</h3>
+                    <span style="background: rgba(0,255,153,0.1); color: #00ff99; padding: 5px 12px; border-radius: 8px; font-size: 12px; border: 1px solid rgba(0,255,153,0.3);"><i class="fa-solid fa-bolt"></i> Consulta Econômica</span>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); color: #00ff99;">
+                            <th style="padding: 10px;">Nome</th>
+                            <th style="padding: 10px;">Bairro</th>
+                            <th style="padding: 10px;">Indicador</th>
+                            <th style="padding: 10px;">Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-resultados">
+                        <tr><td colspan="4" style="text-align: center; padding: 20px; color: #ccc;">Dados carregados via Firebase otimizado...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <script>
+                function mostrarResultado(tipoConsulta) {
+                    const container = document.getElementById('container-resultados');
+                    const titulo = document.getElementById('titulo-resultado');
+                    container.style.display = 'block';
+                    titulo.innerHTML = `Resultados: <span style="color: white; font-size: 18px;">${tipoConsulta}</span>`;
+                    // Aqui entrará futuramente a lógica de integração real chamando o banco,
+                    // por hora exibe a tabela em visualização de mock visual.
+                    container.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }
+            </script>
         </main>
     </div>
 </body>
