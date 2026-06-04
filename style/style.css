@@ -596,3 +596,97 @@ form button:hover {
         padding: 30px 20px;
     }
 }
+
+/* =========================================
+   SELETOR DE LAYOUT (MOBILE / PC / AUTO)
+   ========================================= */
+.layout-toggle-container {
+    text-align: center;
+    padding: 30px 5%;
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 16px;
+    margin-top: 40px;
+}
+.layout-toggle-container span {
+    color: var(--text-muted);
+}
+.layout-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition-speed);
+}
+.layout-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.layout-btn.active {
+    background: var(--primary-color);
+    color: var(--bg-dark-1);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 255, 153, 0.4);
+}
+
+/* LAYOUT PC FORÇADO */
+body.force-pc {
+    min-width: 1200px !important;
+}
+
+/* LAYOUT MOBILE FORÇADO (Simulação em telas grandes) */
+body.force-mobile {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+body.force-mobile .header {
+    width: 100%;
+    max-width: 480px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+body.force-mobile .menu {
+    display: none !important;
+}
+body.force-mobile .mobile-btn {
+    display: block !important;
+}
+body.force-mobile .hero {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    padding-top: 150px !important;
+}
+body.force-mobile .hero p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+body.force-mobile .hero-buttons {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+}
+body.force-mobile .hero-video {
+    max-width: 100% !important;
+    margin-top: 40px !important;
+}
+body.force-mobile section {
+    padding: 60px 5% !important;
+}
+body.force-mobile .form-box,
+body.force-mobile .counter-box {
+    padding: 30px 20px !important;
+}
+body.force-mobile .cards-container {
+    grid-template-columns: 1fr !important;
+}

@@ -472,6 +472,14 @@
 
     </section>
 
+    <!-- SELETOR DE LAYOUT -->
+    <section class="layout-toggle-container">
+        <span>Opções de Visualização:</span>
+        <button id="btn-layout-auto" class="layout-btn active" onclick="setLayout('auto')">Automático</button>
+        <button id="btn-layout-mobile" class="layout-btn" onclick="setLayout('mobile')">Versão Mobile</button>
+        <button id="btn-layout-pc" class="layout-btn" onclick="setLayout('pc')">Versão PC</button>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
 
@@ -530,6 +538,28 @@
 
     <!-- JS -->
     <script src="dist/bundle.js"></script>
+
+    <script>
+        function setLayout(mode) {
+            document.querySelectorAll('.layout-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-layout-' + mode).classList.add('active');
+            
+            const viewport = document.querySelector('meta[name="viewport"]');
+            
+            if (mode === 'pc') {
+                document.body.classList.remove('force-mobile');
+                document.body.classList.add('force-pc');
+                if(viewport) viewport.setAttribute('content', 'width=1200');
+            } else if (mode === 'mobile') {
+                document.body.classList.remove('force-pc');
+                document.body.classList.add('force-mobile');
+                if(viewport) viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            } else {
+                document.body.classList.remove('force-pc', 'force-mobile');
+                if(viewport) viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            }
+        }
+    </script>
 
 </body>
 
