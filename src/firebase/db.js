@@ -36,6 +36,44 @@ export function ouvirApoiadores(callback) {
   });
 }
 
+// --- CONSULTAS OTIMIZADAS PARA O PAINEL DE APOIADORES ---
+import { where, limit, getDocs } from "firebase/firestore";
+
+export async function buscarUltimosApoiadores(qtd = 10) {
+  const q = query(apoiadorColRef, orderBy("createdAt", "desc"), limit(qtd));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function buscarApoiadoresPorData(inicio, fim) {
+  const q = query(
+    apoiadorColRef, 
+    where("createdAt", ">=", inicio), 
+    where("createdAt", "<=", fim),
+    orderBy("createdAt", "desc")
+  );
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function buscarApoiadoresPorBairro(bairro) {
+  const q = query(apoiadorColRef, where("bairro", "==", bairro), limit(50));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function buscarApoiadoresPorCidade(cidade) {
+  const q = query(apoiadorColRef, where("cidade", "==", cidade), limit(50));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function buscarApoiadoresPorIndicador(indicador) {
+  const q = query(apoiadorColRef, where("indicador", "==", indicador), limit(50));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
 // --- CONTROLE DE ACESSO (RBAC) ---
 export async function getUserRole(uid) {
   try {

@@ -3,6 +3,7 @@ import { cadastrarApoiador, ouvirApoiadores, ouvirReunioes } from './firebase/db
 import { initScriptDash } from '../components/src/scriptdash.js';
 import { initLogin } from './login.js';
 import { initReunioes } from './reunioes.js';
+import { initPainelApoiadores } from './painelApoiadores/painel.js';
 
 // Inicializa componentes visuais
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScriptDash();
     initLogin();
     initReunioes();
+    initPainelApoiadores();
 
     // Referência ao formulário de cadastro na página principal
     const addForm = document.querySelector('.add');
